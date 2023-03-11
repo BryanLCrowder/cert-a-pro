@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
+import 'package:cert_a_pro/widgets/category_grid.dart';
+import 'package:flutter/material.dart';
+
+// ignore: constant_identifier_names
 enum FilterOptions { Favorites, All }
 
 class LandingPage extends StatefulWidget {
@@ -11,41 +13,37 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-
-  var _showOnlyFavorites = false;
-  var _isInit = true;
-  var _isLoading = false;
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("Welcome",),
-         actions: <Widget>[
-          PopupMenuButton(
-            onSelected: (FilterOptions selectedValue) {
-              setState(() {
-                if (selectedValue == FilterOptions.Favorites) {
-                  //print("hit favorites");
-                  _showOnlyFavorites = true;
-                } else {
-                  //print("hit all");
-                  _showOnlyFavorites = false;
-                }
-              });
-            },
-            icon: const Icon(Icons.more_vert),
-            itemBuilder: (_) => [
-              const PopupMenuItem(
-                  value: FilterOptions.Favorites,
-                  child: Text("Only Favorites")),
-              const PopupMenuItem(
-                  value: FilterOptions.All, child: Text("Show All")),
-            ],
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text(
+            "Welcome",
           ),
-        ],
-      ),
-      body: const Text("Hello World")
-    );
+          actions: <Widget>[
+            PopupMenuButton(
+              onSelected: (FilterOptions selectedValue) {
+                setState(() {
+                  if (selectedValue == FilterOptions.Favorites) {
+                    //print("hit favorites");
+                  } else {
+                    //print("hit all");
+                  }
+                });
+              },
+              icon: const Icon(Icons.more_vert),
+              itemBuilder: (_) => [
+                const PopupMenuItem(
+                    value: FilterOptions.Favorites,
+                    child: Text("Only Favorites")),
+                const PopupMenuItem(
+                    value: FilterOptions.All, child: Text("Show All")),
+              ],
+            ),
+          ],
+        ),
+        body: const CategoryGrid());
   }
 }

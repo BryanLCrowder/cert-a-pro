@@ -1,4 +1,7 @@
+import 'package:cert_a_pro/pages/certification_page.dart';
 import 'package:cert_a_pro/pages/landing_page.dart';
+import 'package:cert_a_pro/providers/category_provider.dart';
+import 'package:cert_a_pro/providers/certification_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,17 +14,29 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (BuildContext ctx) => Categories(),
+        ),
+        ChangeNotifierProvider(
+          create: (BuildContext ctx) => Certifications(),
+        ),
+      ],
       child: MaterialApp(
         title: 'MyShop',
         theme: ThemeData(
+
+          scaffoldBackgroundColor: const Color.fromARGB(255 ,83, 221, 108),
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
+          colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.blue)
               .copyWith(secondary: Colors.deepOrange),
           fontFamily: 'Lato',
         ),
         home: const LandingPage(),
-        routes: const {
+        routes: {
+          CertificationPage.routeName: (ctx) => const CertificationPage(),
         },
       ),
     );
