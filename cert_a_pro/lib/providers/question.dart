@@ -1,18 +1,19 @@
 import 'package:cert_a_pro/providers/answer.dart';
+import 'package:flutter/material.dart';
 
 enum QuestionType { selectAll, selectOne }
 
-class Question {
+class Question with ChangeNotifier {
   final String id;
   final String question;
   final QuestionType questionType;
-  final Answer correctAnswer;
+  final String correctAnswerID;
   final List<Answer> answers;
 
   Question(
       {required this.id,
       required this.question,
       required this.questionType,
-      required this.correctAnswer,
+      required this.correctAnswerID,
       required this.answers});
 }

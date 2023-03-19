@@ -1,4 +1,3 @@
-import 'package:cert_a_pro/providers/certification.dart';
 import 'package:flutter/material.dart';
 
 class Category with ChangeNotifier {
